@@ -4,7 +4,6 @@ require 'cutorch'
 
 -- setup GPUInfo that badmm wants
 local gpu_info = ffi.new('GPUInfo')
-ffi.gc(gpu_info, ffi.free)
 badmm.C.badmm_getGPUInfo(gpu_info);
 
 
@@ -15,7 +14,6 @@ C = torch.FloatTensor(100, 50):uniform()
 
 -- create the BADMM_massTrans structure
 local badmm_mt = ffi.new('BADMM_massTrans')
-ffi.gc(badmm_mt, ffi.free)
 
 badmm_mt.m = m -- number of rows of matrix
 badmm_mt.n = n   -- number of columns of matrix
